@@ -25,6 +25,32 @@
             background-color: #f4f4f9;
             margin: 0;
         }
+
+        .carrossel {
+            width: 500px;
+            padding: 30px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            height: 120px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fade {
+            animation: fade 1s ease-in-out;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .countdown {
             font-size: 3rem;
             /*background-color: #333;*/
@@ -40,6 +66,7 @@
         <img src="hugo-natalino.jpeg" alt="hugo">
     </div>
     <div class="countdown" id="countdown"></div>
+    <div class="carrossel" id="frase"></div>
 
     <script>
         // Defina a data de contagem regressiva
@@ -70,6 +97,45 @@
                 document.getElementById("countdown").innerHTML = "Chegou o grande dia! Douze Douze!";
             }
         }, 1000);
+
+        const frases = [
+            "Só estou precisando deitar, depois de passar o dia todo deitado.",
+            "Seja você mesmo, mas nunca sempre o mesmo.",
+            "WE",
+            "Ser maluco onde todos tentam ser igual para mim é um elogio",
+            "Bem-vindo ao cemitério de ambições.",
+            "Ó o sutil",
+            "Para ultrapassar quem está parado, basta você da um passo.",
+            "Reaja à assaltos",
+            "66 de conexão é triste.",
+            "Eu sou sua amante pra você ficar me mandando visualização única?",
+            "Galo pra você que é íntimo.",
+            "Ja conheço todos aqui e não quero amizade com eles.",
+            "Eu tenho memória boa pra coisa ruim e memória ruim pra coisa boa.",
+            "Goleiro só serve pra dar química.",
+            "Quando a gente tem 40+ farmácia é passeio.",
+            "Eu nunca traí na minha vida...Nunca tive oportunidade também.",
+            "Vida fraca tem que ficar dando satisfação pros outros.",
+            "Que show? Show por na sua bunda.",
+            "Por que eu deveria parar de fumar? Era pra eu ser rico também e não sou",
+            "Só queria ser médio no FIFA."
+        ];
+
+        let indice = 0;
+
+        function trocarFrase() {
+            const elemento = document.getElementById("frase");
+            elemento.classList.remove("fade"); // remove animação
+            void elemento.offsetWidth;         // reinicia animação
+
+            elemento.textContent = frases[indice];
+            elemento.classList.add("fade");
+
+            indice = (indice + 1) % frases.length;
+        }
+
+        trocarFrase();                 // primeira frase
+        setInterval(trocarFrase, 3000); // troca a cada 3 segundos
     </script>
 
 </body>
